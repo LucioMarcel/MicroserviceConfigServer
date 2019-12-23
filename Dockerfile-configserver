@@ -1,6 +1,6 @@
 FROM alpine-jdk:base
 MAINTAINER javaonfly
-COPY /home/lucio/GitHub/MicroserviceConfigServer/targetcd./MicroserviceConfigServer-0.0.1-SNAPSHOT.jar /opt/lib/
+COPY /home/lucio/GitHub/MicroserviceConfigServer/target/MicroserviceConfigServer-0.0.1-SNAPSHOT.jar /opt/lib/
 RUN mkdir /var/lib/config-repo
 COPY home/lucio/config-repo /var/lib/config-repo
 ENTRYPOINT ["/usr/bin/java"]
