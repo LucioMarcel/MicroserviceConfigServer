@@ -25,8 +25,10 @@ pipeline {
             }
         }
 	stage('Deliver') {
+	    node{
+               def customImage = docker.build("--file=Dockerfile-configserver --tag=config-server:latest --rm=true .")
+            }
 	    steps {
-                sh 'docker.build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
                 sh 'docker volume create --name=config-repo'
                 sh 'docker run --name=config-server --publish=9090:9090 --volume=config-repo:/var/lib/config-repo config-server:latest'
             }
