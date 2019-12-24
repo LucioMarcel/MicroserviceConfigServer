@@ -17,7 +17,7 @@ pipeline {
 	
 	    }
 	    steps{
-	         'ls"'
+	         sh 'ls'
             }
 	}
         stage('Build') { 
