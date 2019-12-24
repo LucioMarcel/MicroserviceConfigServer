@@ -9,11 +9,12 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-
+        stage('Initialize')
+	{
             environment {
    	        def dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-
+                PATH = "${dockerHome}/bin:${env.PATH}"
+	    }
 	}
         stage('Build') { 
             steps {
