@@ -9,17 +9,6 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-        stage('Initialize')
-	{
-            environment {
-   	        def dockerHome = tool 'myDocker'
-                PATH = "${dockerHome}/bin:${env.PATH}"
-	
-	    }
-	    steps{
-	         sh 'ls'
-            }
-	}
         stage('Build') { 
             steps {
                 sh 'mvn -B -DskipTests clean package' 
@@ -35,7 +24,12 @@ pipeline {
                 }
             }
         }
-	stage('Deliver') {	
+	stage('Deliver') {
+	    environment {
+   	        def dockerHome = tool 'myDocker'
+                PATH = "${dockerHome}/bin:${env.PATH}"
+	
+	    }	
             steps {
                 sh 'docker build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
                 sh 'docker volume create --name=config-repo'
