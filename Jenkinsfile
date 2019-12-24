@@ -25,7 +25,11 @@ pipeline {
             }
         }
 	stage('Deliver') {
-	    agent any
+	    agent {
+		docker {
+		    image 'docker:dind' 
+		}
+	    }
             steps {
                 sh 'docker build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
                 sh 'docker volume create --name=config-repo'
