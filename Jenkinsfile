@@ -14,10 +14,11 @@ pipeline {
             environment {
    	        def dockerHome = tool 'myDocker'
                 PATH = "${dockerHome}/bin:${env.PATH}"
-	steps{
-		sh 'ls"'
-	}
-		    }
+	
+	    }
+	    steps{
+	         'ls"'
+            }
 	}
         stage('Build') { 
             steps {
