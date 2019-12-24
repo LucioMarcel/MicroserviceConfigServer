@@ -25,11 +25,7 @@ pipeline {
             }
         }
 	stage('Deliver') {
-	    environment {
-   	        def dockerHome = tool 'myDocker'
-                PATH = "${dockerHome}/bin:${env.PATH}"
-	
-	    }	
+	    
             steps {
                 sh 'docker build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
                 sh 'docker volume create --name=config-repo'
