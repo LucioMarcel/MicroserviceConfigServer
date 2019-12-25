@@ -1,20 +1,22 @@
 pipeline {
-	agent {
-		docker {
-			image 'maven:3-alpine' 
-			args '-v /root/.m2:/root/.m2' 
-        	}
-    	}
+	
     	options {
         	skipStagesAfterUnstable()
     	}
     	stages {
 		stage('Build') { 
+		agent {
+				docker {
+					image 'maven:3-alpine' 
+					args '-v /root/.m2:/root/.m2' 
+				}
+		    	}
     	        	steps {
     	        	    sh 'mvn -B -DskipTests clean package' 
     	        	}
 		}
 		stage('Deliver') {
+			agent any
 
 			steps {
 				sh 'docker build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
