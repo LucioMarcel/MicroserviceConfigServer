@@ -14,7 +14,6 @@ pipeline {
     	        	    sh 'mvn -B -DskipTests clean package' 
     	        	}
 		}
-
 		stage('Deliver') {
 			agent any
 			steps {
