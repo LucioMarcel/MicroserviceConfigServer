@@ -13,7 +13,7 @@ pipeline {
 			steps {
 				
 				script {
-					docker.withRegistry('https://https://hub.docker.com', 'dockerhub') {
+					docker.withRegistry('https://hub.docker.com/', 'dockerhub') {
 
 						def customImage = docker.build("config-server:latest")
 
