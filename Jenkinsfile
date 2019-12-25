@@ -1,4 +1,4 @@
-ipeline {
+pipeline {
 	environment {
 		registry = "luciomarcel/demo"
     		registryCredential = 'dockerhub'
