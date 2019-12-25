@@ -14,12 +14,9 @@ pipeline {
     	        	    sh 'mvn -B -DskipTests clean package' 
     	        	}
 		}
-		stage('Test'){
-			steps {
-				sh 'mvn test'	
-			}
-		}
+
 		stage('Deliver') {
+			agent any
 			steps {
 				sh 'docker build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
         	                sh 'docker volume create --name=config-repo'
