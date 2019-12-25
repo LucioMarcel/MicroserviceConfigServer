@@ -10,8 +10,6 @@ pipeline {
 			}
 		}
 		stage('Deliver') {
-			agent any
-
 			steps {
 				sh 'docker build --file=Dockerfile-configserver --tag=config-server:latest --rm=true .'
         	                sh 'docker volume create --name=config-repo'
