@@ -1,4 +1,8 @@
-pipeline {
+ipeline {
+	environment {
+		registry = "luciomarcel/demo"
+    		registryCredential = 'dockerhub'
+	}
 	agent any
     	options {
         	skipStagesAfterUnstable()
@@ -13,7 +17,7 @@ pipeline {
 			steps {
 				
 				script {
-					docker.withRegistry('https://hub.docker.com/', 'dockerhub') {
+					docker.withRegistry('', registryCredential) {
 
 						def customImage = docker.build("config-server:latest")
 
