@@ -11,8 +11,15 @@ pipeline {
 		}
 		stage('Deliver') {
 			steps {
+				
 				script {
-					def container = docker.build("config-server:latest")
+					docker.withRegistry('https://https://hub.docker.com', 'dockerhub') {
+
+						def customImage = docker.build("config-server:latest")
+
+						customImage.push()
+					}
+
 				}     
 			}	
 	        }
