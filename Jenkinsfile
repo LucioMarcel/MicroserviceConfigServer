@@ -10,11 +10,11 @@ pipeline {
 			}
 		}
 		stage('Deliver') {
-			script {
-				def container = docker.build('--file=Dockerfile-configserver --tag=config-server:latest --rm=true .')
-        	                
-			}
+			steps {
+				script {
+					def container = docker.build('--file=Dockerfile-configserver --tag=config-server:latest --rm=true .')
+				}     
+			}	
 	        }
-	
     	}
 }
