@@ -19,9 +19,9 @@ pipeline {
 				script {
 					docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
 
-						def customImage = docker.build(registry)
+						def customImage = docker.build(registry+":latest")
 
-						customImage.push(latest)
+						customImage.push()
 					}
 
 				}     
