@@ -26,7 +26,7 @@ pipeline {
 							def customImage = docker.build(registry+":latest")
 
 							customImage.push()
-					Delivery	}
+						}
 
 					}     
 				}	
