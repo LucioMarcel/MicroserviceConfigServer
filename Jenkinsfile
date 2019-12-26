@@ -1,6 +1,6 @@
 pipeline {
 	environment {
-		registry = "luciomarcel/demo"
+		registry = "luciomarcel/config-server"
     		registryCredential = 'dockerhub'
 	}
 	agent any
@@ -19,9 +19,9 @@ pipeline {
 				script {
 					docker.withRegistry('', registryCredential) {
 
-						def customImage = docker.build("config-server:latest")
+						def customImage = docker.build(registry)
 
-						customImage.push()
+						customImage.push(latest)
 					}
 
 				}     
